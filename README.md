@@ -1,88 +1,37 @@
-# Meeting Debrief AI
+AI-Powered Meeting Debrief
+Project Overview
+This is an AI-first, full-stack web application I created to showcase my ability to use AI to increase my effciency.
 
-A modern Next.js application that transforms audio meetings into actionable insights using AI-powered transcription and intelligent summarization.
+This entire project, from initial concept to a functional prototype, was conceived and developed in under 3 hours. It serves as a proof of concept for the "AI-first" development approach, showcasing how an engineer can leverage generative AI models and tools to act as a force multiplier, accelerating development speed without sacrificing quality.
 
-## Features
+✨ Key Features
+Mock Meeting Interface: A simplified, Google Meets-style UI that records voice during a mock meeting.
 
-- 🎤 **Audio Upload**: Drag-and-drop audio file upload with support for multiple formats
-- 🤖 **AI Transcription**: Powered by Whisper AI for accurate speech-to-text conversion
-- ✨ **Smart Summarization**: Gemini AI generates executive summaries and action items
-- 📧 **Team Sharing**: Email meeting insights directly to team members
-- 🎨 **Modern UI**: Beautiful, responsive design with smooth animations
+Automated Transcription: Automatically transcribes the recorded audio using an open-source model.
 
-## Getting Started
+Intelligent Summarization: Uses the Gemini API to generate a concise summary and a list of actionable tasks from the transcript.
 
-### Prerequisites
+Responsive & Professional Design: The UI is designed to be modern and professional, inspired by a clean, bold aesthetic.
 
-- Node.js 18+ installed
-- A Gemini AI API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-- A running Whisper transcription service (Flask backend with ngrok)
+🧠 The AI-First Development Process
+This project was built with Cursor, an AI-first code editor, as the primary development tool. My role was not just to write code, but to effectively prompt, guide, and debug the AI's output. This process demonstrates a key skill for a modern engineer: the ability to leverage AI to handle boilerplate and complex logic, freeing up time to focus on design, user experience, and overall system architecture.
 
-### Environment Setup
+How AI Was Used:
+User Story & Plan Generation: The project was planned collaboratively with an AI, defining user stories, a tech stack, and a step-by-step roadmap.
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd meeting-debrief
-   ```
+Code Generation: AI was prompted to generate core components and functions, including the drag-and-drop file uploader, the backend API route for transcription, and the API calls to the summarisation model.
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+Debugging: When errors occurred (e.g., ModuleNotFoundError), the AI was used to diagnose the issue and provide corrected code.
 
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-   Edit `.env.local` and add your API keys:
-   ```env
-   # Whisper Transcription API (ngrok URL)
-   NEXT_PUBLIC_TRANSCRIPTION_API_URL=https://your-ngrok-url.ngrok-free.app/transcribe
-   
-   # Gemini AI API Key
-   NEXT_PUBLIC_GEMINI_API_KEY=your-gemini-api-key-here
-   
-   # Gemini AI Model URL
-   NEXT_PUBLIC_GEMINI_API_URL=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent
-   ```
+Prompt Engineering: The prompts for the summarization model were carefully engineered to ensure the output was in a precise, machine-readable JSON format, demonstrating an understanding of how to get predictable results from a generative model.
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+Tech Stack
+Frontend: Next.js (with React) & Tailwind CSS
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+Backend: Python (Flask) & Google Colab (for a free, temporary server)
 
-## Security
+AI APIs: OpenAI Whisper (Transcription) & Google Gemini (Summarization)
 
-- ✅ API keys are stored in environment variables (`.env.local`)
-- ✅ Environment files are gitignored to prevent accidental commits
-- ✅ Client-side API calls use `NEXT_PUBLIC_` prefix for Next.js compatibility
+Update API URL: Copy the new public URL from your Colab notebook and paste it into the API_URL constant in the Next.js Uploader.jsx component.
 
-## API Configuration
-
-The application requires two external services:
-
-1. **Whisper Transcription Service**: A Flask backend running Whisper AI for audio transcription
-2. **Gemini AI**: Google's AI model for generating summaries and action items
-
-Make sure both services are properly configured and accessible before using the application.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Meeting-Debreif
+Run the App: npm run dev
