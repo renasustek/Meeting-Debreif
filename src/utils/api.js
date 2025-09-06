@@ -1,7 +1,20 @@
-// API Configuration
-export const TRANSCRIPTION_API_URL = 'https://4c97209faf87.ngrok-free.app/transcribe';
-export const GEMINI_API_KEY = 'AIzaSyBKbb9USQUCocF290NjwZUcetxjKryzCEg';
-export const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
+// API Configuration - Using environment variables for security
+export const TRANSCRIPTION_API_URL = process.env.NEXT_PUBLIC_TRANSCRIPTION_API_URL;
+export const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+export const GEMINI_API_URL = process.env.NEXT_PUBLIC_GEMINI_API_URL;
+
+// Validate that required environment variables are set
+if (!TRANSCRIPTION_API_URL) {
+  console.error('NEXT_PUBLIC_TRANSCRIPTION_API_URL is not set in environment variables');
+}
+
+if (!GEMINI_API_KEY) {
+  console.error('NEXT_PUBLIC_GEMINI_API_KEY is not set in environment variables');
+}
+
+if (!GEMINI_API_URL) {
+  console.error('NEXT_PUBLIC_GEMINI_API_URL is not set in environment variables');
+}
 
 // Transcription API
 export const transcribeAudio = async (file) => {
