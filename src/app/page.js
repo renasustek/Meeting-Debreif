@@ -9,8 +9,8 @@ export default function Home() {
   const transcript = searchParams.get('transcript');
   const source = searchParams.get('source');
 
-  useEffect(() => {
-    // If we have a transcript from a meeting, we can handle it here
+  useEffect(() => {                         
+    // If we have a transcript from a meeting, we can handle it here                                                                  
     if (transcript && source === 'meeting') {
       console.log('Received transcript from meeting:', transcript.length, 'characters');
       // The AudioFileUploader component will handle displaying this transcript

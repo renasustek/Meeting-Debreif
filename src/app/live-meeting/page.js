@@ -60,6 +60,43 @@ export default function LiveMeeting() {
     };
   }, []);
 
+  // Cleanup function
+  const cleanupRecording = () => {
+    console.log('Cleaning up recording resources');
+    
+    // Stop MediaRecorder if active
+    if (mediaRecorderRef.current && isRecording) {
+      console.log('Stopping MediaRecorder');
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+    }
+    
+    // Clear timer
+    if (intervalRef.current) {
+      console.log('Clearing timer');
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    
+    // Clear refs
+    mediaRecorderRef.current = null;
+    audioChunksRef.current = [];
+  };
+
+  // Cleanup when component unmounts
+  useEffect(() => {
+    return () => {
+      cleanupRecording();
+    };
+  }, []);
+
+  // Cleanup when processing starts
+  useEffect(() => {
+    if (isProcessing) {
+      cleanupRecording();
+    }
+  }, [isProcessing]);
+
   // Timer effect
   useEffect(() => {
     if (isRecording) {
@@ -148,8 +185,15 @@ export default function LiveMeeting() {
   // End meeting and process audio
   const endMeeting = async () => {
     if (mediaRecorderRef.current && isRecording) {
+      console.log('Ending meeting - stopping recording');
       mediaRecorderRef.current.stop();
       setIsRecording(false);
+      
+      // Clear the timer immediately
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
       
       // Wait for the onstop event to create the audio blob
       // We'll use a Promise to wait for the blob to be ready
