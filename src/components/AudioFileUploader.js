@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { transcribeAudio, generateSummary as generateSummaryAPI, sendEmail as sendEmailAPI } from '../utils/api';
 import { formatErrorMessage } from '../utils/validation';
 import FileUpload from './FileUpload';
@@ -11,11 +12,12 @@ import ErrorDisplay from './ErrorDisplay';
 import SuccessDisplay from './SuccessDisplay';
 import '../styles/modern.css';
 
-export default function AudioFileUploader() {
+export default function AudioFileUploader({ initialTranscript }) {
+  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
-  const [transcript, setTranscript] = useState('');
+  const [transcript, setTranscript] = useState(initialTranscript || '');
   const [uploadedFile, setUploadedFile] = useState(null);
   const [error, setError] = useState('');
   const [summary, setSummary] = useState('');
@@ -111,6 +113,22 @@ export default function AudioFileUploader() {
           <p className="subtitle">
             Transform your audio meetings into actionable insights with AI-powered transcription and intelligent summarization
           </p>
+          
+          {/* Navigation */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              onClick={() => router.push('/lobby')}
+              className="btn btn-lg btn-primary"
+            >
+              🎥 Start Live Meeting
+            </button>
+            <div className="flex items-center text-gray-500 dark:text-gray-400">
+              or
+            </div>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">
+              Upload existing audio file below
+            </span>
+          </div>
         </div>
 
         {/* File Upload Component */}
